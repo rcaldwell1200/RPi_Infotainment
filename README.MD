@@ -20,6 +20,7 @@ You want the pre-requisites huh?
 Example: Hey Google. What are the specifications on the Local Interconnect Network bus?
 
 ```
+* Yup. Definitely what I'd call a 'good background'
 
 ## Deployment
 
