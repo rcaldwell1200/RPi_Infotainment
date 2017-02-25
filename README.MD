@@ -1,10 +1,3 @@
-Project Name: RPi_Infotainment
-Project Start Date: 20170224
-Project End Date: TBD
-
-Purpose: To build a custom 
-
-
 # RPi_Infotainment
 
 RPi_Infotainment is mostly just a working repo to hold all of the components for the project until they work and can be turned in to proper plugins for the Kodi ecosystem.
