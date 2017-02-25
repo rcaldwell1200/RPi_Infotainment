@@ -9,11 +9,11 @@ This is something I'd like to know myself.
 ### Prerequisites
 
 You want the pre-requisites huh? 
-1. Have a car
-2. Have a way to get obd2 info from the car into the RPI (Bluetooth works for wireless, but I find it's too slow or gets interrupted. Wired USB adapters all the way)
-3. Have an RPi 
-4. 12 inch monitor for the infotainment center
-5. A good background in automotive bus protocols and linux helps out a lot here.
+* 1. Have a car
+* 2. Have a way to get obd2 info from the car into the RPI (Bluetooth works for wireless, but I find it's too slow or gets interrupted. Wired USB adapters all the way)
+* 3. Have an RPi 
+* 4. 12 inch monitor for the infotainment center
+* 5. A good background in automotive bus protocols and linux helps out a lot here.
 
 
 ```
