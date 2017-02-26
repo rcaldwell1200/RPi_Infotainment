@@ -15,6 +15,12 @@ GPIO.setup(18,GPIO.IN)
 #Volume up 
 GPIO.setup(23,GPIO.IN)
 
+#define prev values so python doesn't explode
+input_Last_prev = 0
+input_Play_prev = 0
+input_Next_prev = 0
+input_VlDn_prev = 0
+input_VlUp_prev = 0
 
 #Main Application
 while True:
