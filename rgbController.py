@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from Tkinter import *
 from tkColorChooser import askcolor
 import RPi.GPIO as GPIO
@@ -21,6 +22,9 @@ GPIO.setup(9, GPIO.OUT)
 GPIO.setup(10, GPIO.OUT)
 GPIO.setup(11, GPIO.OUT)
 GPIO.setup(12, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
+GPIO.setup(14, GPIO.OUT)
+GPIO.setup(15, GPIO.OUT)
 
 # Define pins and profiles
 # Driver
@@ -47,6 +51,12 @@ rRPassenger_Red = GPIO.PWM(10, 500)
 rRPassenger_Green = GPIO.PWM(11, 500)
 rRPassenger_Blue = GPIO.PWM(12, 500)
 
+# Trunk
+
+lTrunk_Red = GPIO.PWM(13, 500)
+lTrunk_Green = GPIO.PWM(14, 500)
+lTrunk_Blue = GPIO.PWM(15, 500)
+
 # Start PWM
 
 driver_Red.start(50)
@@ -62,9 +72,9 @@ rRPassenger_Red.start(50)
 rRPassenger_Green.start(50)
 rRPassenger_Blue.start(50)
 
+
 # Set Default Values
 # Not really sure how thats gonna happen
-
 # create gui code
 
 class App:
@@ -75,34 +85,51 @@ class App:
 
         # Labels and positions
 
-
-        buttondriver = Button(text='Driver Color', command=self.updatedriver).pack()
-	buttonfpassenger = Button(text='Passenger Color', command=self.updatefPassenger).pack()
-	buttonlrpassenger = Button(text='L RPassenger', command=self.updatelRPassenger).pack()
-	buttonrrpassenger = Button(text='R RPassenger', command=self.updaterRPassenger).pack()
-
+        buttondriver = Button(text='Driver Color',
+                              command=self.updatedriver).pack()
+        buttonfpassenger = Button(text='Passenger Color',
+                                  command=self.updatefPassenger).pack()
+        buttonlrpassenger = Button(text='L RPassenger',
+                                   command=self.updatelRPassenger).pack()
+        buttonrrpassenger = Button(text='R RPassenger',
+                                   command=self.updaterRPassenger).pack()
+        buttonltrunk = Button(text='Trunk',
+                              command=self.updateTrunk).pack()
 
     def updatedriver(useless):
-	color = askcolor()
-	rgb = color[0]
+        color = askcolor()
+        rgb = color[0]
         driver_Red.ChangeDutyCycle(float(rgb[0] / 2.56))
-	driver_Green.ChangeDutyCycle(float(rgb[1] / 2.56))
-	driver_Blue.ChangeDutyCycle(float(rgb[2] / 2.56))
+        driver_Green.ChangeDutyCycle(float(rgb[1] / 2.56))
+        driver_Blue.ChangeDutyCycle(float(rgb[2] / 2.56))
 
     def updatefPassenger(useless):
-        fPassenger_Red.ChangeDutyCycle(float(duty))
-        fPassenger_Green.ChangeDutyCycle(float(duty))
-        fPassenger_Blue.ChangeDutyCycle(float(duty))
+        color = askcolor()
+        rgb = color[0]
+        fPassenger_Red.ChangeDutyCycle(float(rgb[0] / 2.56))
+        fPassenger_Green.ChangeDutyCycle(float(rgb[1] / 2.56))
+        fPassenger_Blue.ChangeDutyCycle(float(rgb[2] / 2.56))
 
-    def updatelRPassenger(self, duty):
-        lRPassenger_Red.ChangeDutyCycle(float(duty))
-        lRPassenger_Green.ChangeDutyCycle(float(duty))
-        lRPassenger_Blue.ChangeDutyCycle(float(duty))
+    def updatelRPassenger(useless):
+        color = askcolor()
+        rgb = color[0]
+        lRPassenger_Red.ChangeDutyCycle(float(rgb[0] / 2.56))
+        lRPassenger_Green.ChangeDutyCycle(float(rgb[1] / 2.56))
+        lRPassenger_Blue.ChangeDutyCycle(float(rgb[2] / 2.56))
 
-    def updaterRPassenger(self, duty):
-        rRPassenger_Red.ChangeDutyCycle(float(duty))
-        rRPassenger_Green.ChangeDutyCycle(float(duty))
-        rRPassenger_Blue.ChangeDutyCycle(float(duty))
+    def updaterRPassenger(useless):
+        color = askcolor()
+        rgb = color[0]
+        rRPassenger_Red.ChangeDutyCycle(float(rgb[0] / 2.56))
+        rRPassenger_Green.ChangeDutyCycle(float(rgb[1] / 2.56))
+        rRPassenger_Blue.ChangeDutyCycle(float(rgb[2] / 2.56))
+
+    def updateTrunk(useless):
+        color = askcolor()
+        rgb = color[0]
+        lTrunk_Red.ChangeDutyCycle(float(rgb[0] / 2.56))
+        lTrunk_Green.ChangeDutyCycle(float(rgb[1] / 2.56))
+        lTrunk_Blue.ChangeDutyCycle(float(rgb[2] / 2.56))
 
 
 # Set the GUI running, give the window a title, size and position
