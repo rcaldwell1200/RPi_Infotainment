@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from Tkinter import *
+from tkColorChooser import askcolor
 import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
@@ -74,93 +75,33 @@ class App:
 
         # Labels and positions
 
-        Label(frame, text='driver_Red').grid(row=0, column=0)
-        Label(frame, text='driver_Green').grid(row=1, column=0)
-        Label(frame, text='driver_Blue').grid(row=2, column=0)
-        Label(frame, text='fPassenger_Red').grid(row=3, column=0)
-        Label(frame, text='fPassenger_Green').grid(row=4, column=0)
-        Label(frame, text='fPassenger_Blue').grid(row=5, column=0)
-        Label(frame, text='lRPassenger_Red').grid(row=6, column=0)
-        Label(frame, text='lRPassenger_Green').grid(row=7, column=0)
-        Label(frame, text='lRPassenger_Blue').grid(row=8, column=0)
-        Label(frame, text='rRPassenger_Red').grid(row=9, column=0)
-        Label(frame, text='rRPassenger_Green').grid(row=10, column=0)
-        Label(frame, text='rRPassenger_Blue').grid(row=11, column=0)
-        scaledriver_Red = Scale(frame, from_=0, to=100,
-                                orient=HORIZONTAL,
-                                command=self.updatedriver_Red)
-        scaledriver_Red.grid(row=0, column=1)
-        scaledriver_Green = Scale(frame, from_=0, to=100,
-                                  orient=HORIZONTAL,
-                                  command=self.updatedriver_Green)
-        scaledriver_Green.grid(row=1, column=1)
-        scaledriver_Blue = Scale(frame, from_=0, to=100,
-                                 orient=HORIZONTAL,
-                                 command=self.updatedriver_Blue)
-        scaledriver_Blue.grid(row=2, column=1)
-        scalefPassenger_Red = Scale(frame, from_=0, to=100,
-                                    orient=HORIZONTAL,
-                                    command=self.updatefPassenger_Red)
-        scalefPassenger_Red.grid(row=3, column=1)
-        scalefPassenger_Green = Scale(frame, from_=0, to=100,
-                orient=HORIZONTAL, command=self.updatefPassenger_Green)
-        scalefPassenger_Green.grid(row=4, column=1)
-        scalefPassenger_Blue = Scale(frame, from_=0, to=100,
-                orient=HORIZONTAL, command=self.updatefPassenger_Blue)
-        scalefPassenger_Blue.grid(row=5, column=1)
-        scalelRPassenger_Red = Scale(frame, from_=0, to=100,
-                orient=HORIZONTAL, command=self.updatelRPassenger_Red)
-        scalelRPassenger_Red.grid(row=6, column=1)
-        scalelRPassenger_Green = Scale(frame, from_=0, to=100,
-                orient=HORIZONTAL, command=self.updatelRPassenger_Green)
-        scalelRPassenger_Green.grid(row=7, column=1)
-        scalelRPassenger_Blue = Scale(frame, from_=0, to=100,
-                orient=HORIZONTAL, command=self.updatelRPassenger_Blue)
-        scalelRPassenger_Blue.grid(row=8, column=1)
-        scalerRPassenger_Red = Scale(frame, from_=0, to=100,
-                orient=HORIZONTAL, command=self.updaterRPassenger_Red)
-        scalerRPassenger_Red.grid(row=9, column=1)
-        scalerRPassenger_Green = Scale(frame, from_=0, to=100,
-                orient=HORIZONTAL, command=self.updaterRPassenger_Green)
-        scalerRPassenger_Green.grid(row=10, column=1)
-        scalerRPassenger_Blue = Scale(frame, from_=0, to=100,
-                orient=HORIZONTAL, command=self.updaterRPassenger_Blue)
-        scalerRPassenger_Blue.grid(row=11, column=1)
 
-    def updatedriver_Red(self, duty):
-        driver_Red.ChangeDutyCycle(float(duty))
+        buttondriver = Button(text='Driver Color', command=self.updatedriver).pack()
+	buttonfpassenger = Button(text='Passenger Color', command=self.updatefPassenger).pack()
+	buttonlrpassenger = Button(text='L RPassenger', command=self.updatelRPassenger).pack()
+	buttonrrpassenger = Button(text='R RPassenger', command=self.updaterRPassenger).pack()
 
-    def updatedriver_Green(self, duty):
-        driver_Green.ChangeDutyCycle(float(duty))
 
-    def updatedriver_Blue(self, duty):
-        driver_Blue.ChangeDutyCycle(float(duty))
+    def updatedriver(useless):
+	color = askcolor()
+	rgb = color[0]
+        driver_Red.ChangeDutyCycle(float(rgb[0] / 2.56))
+	driver_Green.ChangeDutyCycle(float(rgb[1] / 2.56))
+	driver_Blue.ChangeDutyCycle(float(rgb[2] / 2.56))
 
-    def updatefPassenger_Red(self, duty):
+    def updatefPassenger(useless):
         fPassenger_Red.ChangeDutyCycle(float(duty))
-
-    def updatefPassenger_Green(self, duty):
         fPassenger_Green.ChangeDutyCycle(float(duty))
-
-    def updatefPassenger_Blue(self, duty):
         fPassenger_Blue.ChangeDutyCycle(float(duty))
 
-    def updatelRPassenger_Red(self, duty):
+    def updatelRPassenger(self, duty):
         lRPassenger_Red.ChangeDutyCycle(float(duty))
-
-    def updatelRPassenger_Green(self, duty):
         lRPassenger_Green.ChangeDutyCycle(float(duty))
-
-    def updatelRPassenger_Blue(self, duty):
         lRPassenger_Blue.ChangeDutyCycle(float(duty))
 
-    def updaterRPassenger_Red(self, duty):
+    def updaterRPassenger(self, duty):
         rRPassenger_Red.ChangeDutyCycle(float(duty))
-
-    def updaterRPassenger_Green(self, duty):
         rRPassenger_Green.ChangeDutyCycle(float(duty))
-
-    def updaterRPassenger_Blue(self, duty):
         rRPassenger_Blue.ChangeDutyCycle(float(duty))
 
 
